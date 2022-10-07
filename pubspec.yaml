@@ -1,0 +1,27 @@
+name: mini_game_pr_contest
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=2.17.6 <3.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.5
+  flutter_easyloading: ^3.0.3
+  flutter:
+    sdk: flutter
+  percent_indicator: ^4.2.2
+
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter:
+  assets:
+    - assets/image/
+  uses-material-design: true
+
+
