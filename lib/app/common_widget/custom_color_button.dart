@@ -4,12 +4,11 @@ import 'package:mini_game_pr_contest/app/utils/dimens.dart';
 
 import '../utils/colors.dart';
 import 'custom_text.dart';
-
-class CustomButton extends StatelessWidget {
+class CustomColorButton extends StatelessWidget {
 
   String? text;
   bool? borderColor;
-   CustomButton({Key? key,this.text="button name", this.borderColor}) : super(key: key);
+  CustomColorButton({Key? key,this.text="button name", this.borderColor=false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +19,7 @@ class CustomButton extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
-
-        //border: Border.all(color:Colors.yellow,width: 3),
+        border: Border.all(color:borderColor==true?Colors.yellow:Colors.grey,width: 15),
       ),
       child: Center(
           child: CustomText(

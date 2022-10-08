@@ -8,14 +8,50 @@ class QuestionScreenController extends GetxController {
   RxList<Questions> questionList=<Questions>[].obs;
   final count = 0.obs;
    RxInt counter=0.obs;
+   RxList<int> scoreAddChecker=<int>[0,0,0,0].obs;
    var currentScore=0.obs;
+  var answerList = <String?>[].obs;
 
+
+  int pickCorrectAnswerIndex(Questions item){
+    if(item.correctAnswer=="A"){
+      print("A");
+      return 0;
+    }
+    else if(item.correctAnswer=="B"){
+      print("B");
+
+      return 1;
+    }
+    else if(item.correctAnswer=="C"){
+      print("C");
+
+      return 2;
+
+    }
+    else if(item.correctAnswer=="D"){
+      print("D");
+
+      return 3;
+    }
+    else{
+      return 0;
+    }
+
+  }
+   void loadAnswerList(Questions item){
+     answerList.value=[];
+     answerList.value.add(item.answers?.a?.replaceAll("&", ""));
+     answerList.value.add(item.answers?.b?.replaceAll("&", ""));
+     answerList.value.add(item.answers?.c?.replaceAll("&", ""));
+     answerList.value.add(item.answers?.d?.replaceAll("&", ""));
+   }
 
   @override
   void onInit() {
     super.onInit();
 
-    loadQuestionLit();
+ //   loadQuestionLit();
   }
 
 
