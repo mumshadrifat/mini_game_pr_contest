@@ -11,6 +11,7 @@ import 'package:mini_game_pr_contest/app/utils/colors.dart';
 import 'package:mini_game_pr_contest/app/utils/dimens.dart';
 
 import '../../../common_widget/answer_button.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/question_screen_controller.dart';
 
 class QuestionScreenView extends GetView<QuestionScreenController> {
@@ -334,25 +335,32 @@ class QuestionScreenView extends GetView<QuestionScreenController> {
     print("---checker array--${controller.scoreAddChecker}");
 
     print("---correct index--${scoreAddtion(item)}");
-    if( scoreAddtion(item)==index){
-      controller.currentScore=controller.currentScore+controller.questionList[controller.counter.value].score!;
+    if(controller.counter==controller.questionList.length-1){
+      controller.setBestScore();
+      Get.toNamed(Routes.HOME);
     }
     else{
-      Get.snackbar("Wrong", "Be conscious");
+      if( scoreAddtion(item)==index){
+        controller.currentScore=controller.currentScore+controller.questionList[controller.counter.value].score!;
+      }
+      else{
+        Get.snackbar("Wrong", "Be conscious");
+      }
+      Timer(Duration(seconds: 2), () {
+        print("Yeah, this line is printed after 3 second");
+        tapped.value = false;
+        controller.counter = controller.counter + 1;
+
+
+        controller.loadAnswerList(
+            controller.questionList[controller.counter.value]);
+        flag.value = controller.pickCorrectAnswerIndex(
+            controller.questionList[controller.counter.value]);
+        print("item no---${controller.counter}");
+        print("next correct answer index${flag}");
+      });
     }
-    Timer(Duration(seconds: 5), () {
-      print("Yeah, this line is printed after 3 second");
-      tapped.value = false;
-      controller.counter = controller.counter + 1;
 
-
-      controller.loadAnswerList(
-          controller.questionList[controller.counter.value]);
-      flag.value = controller.pickCorrectAnswerIndex(
-          controller.questionList[controller.counter.value]);
-      print("item no---${controller.counter}");
-      print("next correct answer index${flag}");
-    });
   }
   int scoreAddtion(Questions item){
  for(int i=0;i<4;i++){

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mini_game_pr_contest/app/common_widget/custom_text.dart';
 import 'package:mini_game_pr_contest/app/modules/question_screen/controllers/question_screen_controller.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -12,6 +13,7 @@ import '../../../utils/dimens.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+  GetStorage box=GetStorage();
 var tapped=false.obs;
    HomeView({Key? key}) : super(key: key);
 QuestionScreenController questionScreenController=Get.put(QuestionScreenController());
@@ -89,7 +91,7 @@ QuestionScreenController questionScreenController=Get.put(QuestionScreenControll
                       fontWeight: FontWeight.bold,
                       size: Dimension.mediumFont),
                   CustomText(
-                    text: "500 points",
+                    text: "${box.read("bestScore").toString()} points",
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     size: Dimension.mediumFont,

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mini_game_pr_contest/app/data/question_repo.dart';
 
 import '../../../model/response_model/question_response.dart';
@@ -9,8 +10,11 @@ class QuestionScreenController extends GetxController {
   final count = 0.obs;
    RxInt counter=0.obs;
    RxList<int> scoreAddChecker=<int>[0,0,0,0].obs;
-   var currentScore=0.obs;
+  RxInt currentScore=0.obs;
   var answerList = <String?>[].obs;
+  final box = GetStorage();
+  RxInt bestScore=0.obs;
+
 
 
   int pickCorrectAnswerIndex(Questions item){
@@ -41,22 +45,40 @@ class QuestionScreenController extends GetxController {
   }
    void loadAnswerList(Questions item){
      answerList.value=[];
-     answerList.value.add(item.answers?.a?.replaceAll("&", ""));
-     answerList.value.add(item.answers?.b?.replaceAll("&", ""));
-     answerList.value.add(item.answers?.c?.replaceAll("&", ""));
-     answerList.value.add(item.answers?.d?.replaceAll("&", ""));
+     answerList.value.add(item.answers?.a?.replaceAll("&", "+"));
+     answerList.value.add(item.answers?.b?.replaceAll("&", "+"));
+     answerList.value.add(item.answers?.c?.replaceAll("&", "+"));
+     answerList.value.add(item.answers?.d?.replaceAll("&", "+"));
    }
 
   @override
   void onInit() {
     super.onInit();
+    writeData();
+
+
+
+
 
  //   loadQuestionLit();
+  }
+  writeData(){
+    if(box.read("bestScore")==null){
+    box.write("bestScore", bestScore);
+    }
   }
 
 
   setBestScore(){
-
+    print(currentScore.value.toString().compareTo(box.read("bestScore").toString()));
+  if(currentScore.value.toString().compareTo(box.read("bestScore").toString())!=0){
+    print("if");
+  box.write("bestScore", currentScore);
+ }
+  else{
+    print("else");
+    box.write("bestScore", bestScore);
+  }
   }
 
   loadQuestionLit() async {
