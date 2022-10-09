@@ -337,6 +337,7 @@ class QuestionScreenView extends GetView<QuestionScreenController> {
     print("---correct index--${scoreAddtion(item)}");
     if(controller.counter==controller.questionList.length-1){
       controller.setBestScore();
+     // controller.homeController.dataInsert();
       Get.toNamed(Routes.HOME);
     }
     else{

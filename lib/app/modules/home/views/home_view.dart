@@ -7,6 +7,8 @@ import 'package:mini_game_pr_contest/app/common_widget/custom_text.dart';
 import 'package:mini_game_pr_contest/app/modules/question_screen/controllers/question_screen_controller.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import '../../../data/local_db.dart';
+import '../../../model/local_model/best_score.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/dimens.dart';
@@ -14,12 +16,15 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   GetStorage box=GetStorage();
+  var test;
 var tapped=false.obs;
    HomeView({Key? key}) : super(key: key);
 QuestionScreenController questionScreenController=Get.put(QuestionScreenController());
   @override
   Widget build(BuildContext context) {
     questionScreenController.loadQuestionLit();
+
+    controller.dataInsert();
     return SafeArea(
       child: Scaffold(
           body: Container(
@@ -90,12 +95,12 @@ QuestionScreenController questionScreenController=Get.put(QuestionScreenControll
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       size: Dimension.mediumFont),
-                  CustomText(
-                    text: "${box.read("bestScore").toString()} points",
+                  Obx(() => CustomText(
+                    text: "${controller.maxScore.value} points",
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     size: Dimension.mediumFont,
-                  ),
+                  ),)
                 ],
               ),
             ),

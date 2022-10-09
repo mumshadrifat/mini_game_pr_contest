@@ -14,8 +14,11 @@ dependencies:
     sdk: flutter
   percent_indicator: ^4.2.2
   get_storage: ^2.0.3
-  hive: ^2.2.3
+
   shared_preferences: ^2.0.15
+  path_provider: '>=0.3.0'
+  path: ^1.8.1
+  sqflite: ^2.0.3+1
 
 
 dev_dependencies: 
