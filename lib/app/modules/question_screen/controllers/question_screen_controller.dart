@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
 import 'package:mini_game_pr_contest/app/data/question_repo.dart';
 
 import '../../../data/local_db.dart';
@@ -15,7 +15,7 @@ class QuestionScreenController extends GetxController {
   RxList<int> scoreAddChecker = <int>[0, 0, 0, 0].obs;
   RxInt currentScore = 0.obs;
   var answerList = <String?>[].obs;
-  final box = GetStorage();
+  //final box = GetStorage();
   RxInt bestScore = 0.obs;
   List<Map>? bestScoreList;
   HomeController homeController=Get.put(HomeController());

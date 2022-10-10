@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
 import 'package:mini_game_pr_contest/app/common_widget/custom_text.dart';
 import 'package:mini_game_pr_contest/app/modules/question_screen/controllers/question_screen_controller.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+
 
 import '../../../data/local_db.dart';
 import '../../../model/local_model/best_score.dart';
@@ -15,7 +15,7 @@ import '../../../utils/dimens.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  GetStorage box=GetStorage();
+  //GetStorage box=GetStorage();
   var test;
 var tapped=false.obs;
    HomeView({Key? key}) : super(key: key);
@@ -125,9 +125,9 @@ QuestionScreenController questionScreenController=Get.put(QuestionScreenControll
             GestureDetector(
               onTap: () {
                 tapped.value=true;
-                EasyLoading.show();
+              //  EasyLoading.show();
                 Get.toNamed(Routes.QUESTION_SCREEN);
-                EasyLoading.dismiss();
+              ///  EasyLoading.dismiss();
 
 
               },
